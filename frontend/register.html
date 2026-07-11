@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register | Smart Inventory System</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Optional but recommended -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav>
+    <div class="links">
+        <a href="index.html">Home</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="card" style="max-width: 400px; margin: 80px auto;">
+        <h2>Create Account</h2>
+
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+
+        <button onclick="registerUser()">Register</button>
+
+        <p style="margin-top: 15px;">
+            Already have an account?
+            <a href="login.html">Login</a>
+        </p>
+    </div>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+
+</body>
+</html>

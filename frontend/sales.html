@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sales & Prediction</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="inventory.html">Inventory</a>
+    <a href="sales.html">Sales & Prediction</a>
+    <a href="alerts.html">Alerts</a>
+</nav>
+
+<div class="container">
+    <h2>Sales & Prediction</h2>
+
+    <div class="card">
+        <select id="productSelect"></select>
+        <input id="saleQty" placeholder="Quantity Sold">
+        <button onclick="addSale()">Add Sale</button>
+    </div>
+
+    <div class="card">
+        <button onclick="predict(7)">Predict 7 Days</button>
+        <button onclick="predict(30)">Predict 30 Days</button>
+        <div id="predictionResult"></div>
+    </div>
+    <div class="card">
+    <h3>Predicted Demand</h3>
+    <canvas id="predictionChart" width="400" height="200"></canvas>
+</div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="js/config.js"></script>
+<script src="js/sales.js"></script>
+</body>
+</html>

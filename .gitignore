@@ -1,0 +1,9 @@
+backend/ node_modules
+backend/.env
+backend/.vscode
+frontend/.vscode
+ml-service/models
+ml-service/requirements.txt
+ml-service/src/__pycache__
+
+
