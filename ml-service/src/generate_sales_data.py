@@ -4,7 +4,7 @@ import random
 
 def generate_sales():
     client = MongoClient("mongodb://localhost:27017/")
-    db = client["smart_inventory"]  # 🔥 change if needed
+    db = client["smart_inventory"]  
 
     products_collection = db["products"]
     sales_collection = db["sales"]

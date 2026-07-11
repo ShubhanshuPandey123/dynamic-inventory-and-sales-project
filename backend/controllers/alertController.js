@@ -5,7 +5,7 @@ exports.getAlerts = async (req, res) => {
     // Get products with quantity < 10 for the logged-in seller
     const lowStockProducts = await Product.find({ 
       quantity: { $lt: 5 },
-      seller: req.user.id   // 🔥 make sure each seller sees only their own products
+      seller: req.user.id   
     });
 
     // Create a message for each product

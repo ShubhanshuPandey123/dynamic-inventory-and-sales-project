@@ -25,14 +25,14 @@ exports.addProduct = async (req, res) => {
 
     const qty = parseInt(quantity);
 
-    // 🔎 Check if product already exists for this seller
+  
     let product = await Product.findOne({
       name: name,
       seller: req.user.id,
     });
 
     if (product) {
-      // ✅ Restock existing product
+  
       product.quantity += qty;
 
       if (category) {
@@ -47,7 +47,7 @@ exports.addProduct = async (req, res) => {
       });
     }
 
-    // 🆕 Create new product if it doesn't exist
+
     product = new Product({
       name,
       quantity: qty,

@@ -10,7 +10,7 @@ exports.runPrediction = async (req, res) => {
     }
 
     try {
-        // 👇 Start python script WITHOUT passing arguments
+      
         const pyProcess = spawn("python", ["../ml-service/src/predict.py"]);
 
         let output = "";
@@ -32,7 +32,7 @@ exports.runPrediction = async (req, res) => {
         res.status(500).json({ error: "Invalid response from ML service" });
     }
 });
-        // 👇 Send input exactly like typing in terminal
+    
         pyProcess.stdin.write(seller_id + "\n");
         pyProcess.stdin.write(product_id + "\n");
         pyProcess.stdin.write(days.toString() + "\n");

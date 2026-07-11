@@ -30,11 +30,11 @@ exports.login = async (req, res) => {
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1d" });
 
-    // ✅ Fix: include id
+  
     return res.json({
       success: true,
       token,
-      user: { id: user._id, name: user.name, email: user.email } // ← seller_id will come from id
+      user: { id: user._id, name: user.name, email: user.email } 
     });
   } catch (err) {
     console.error(err);
