@@ -4,10 +4,8 @@ from sklearn.metrics import mean_absolute_error
 import joblib
 import os
 from pathlib import Path
-
-from data_loader import load_sales_from_mongodb, aggregate_daily_sales
-from feature_engineering import create_features_for_training
-
+from .data_loader import load_sales_from_mongodb, aggregate_daily_sales
+from .feature_engineering import create_features_for_training
 
 def train_model():
 

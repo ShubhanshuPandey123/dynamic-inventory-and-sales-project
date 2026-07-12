@@ -1,3 +1,4 @@
+import os
 import joblib
 import logging
 import json
@@ -5,10 +6,11 @@ from pathlib import Path
 import pandas as pd
 from pymongo import MongoClient
 from bson import ObjectId
-
-from data_loader import load_sales_from_mongodb, aggregate_daily_sales
-from feature_engineering import create_features_for_prediction
-from train import train_model
+from dotenv import load_dotenv
+from .data_loader import load_sales_from_mongodb, aggregate_daily_sales
+from .feature_engineering import create_features_for_prediction
+from .train import train_model
+load_dotenv()
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +19,7 @@ MIN_REQUIRED_DAYS = 20
 
 # ================= STOCK FETCH =================
 def get_current_stock(product_id):
-    client = MongoClient("mongodb://localhost:27017/")
+    client = MongoClient(os.getenv("MONGO_URI"))
     db = client["smart_inventory"]
     products_collection = db["products"]
 

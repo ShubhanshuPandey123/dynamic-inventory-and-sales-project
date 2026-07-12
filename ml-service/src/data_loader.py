@@ -1,5 +1,9 @@
+import os
+from dotenv import load_dotenv
 from pymongo import MongoClient
 import pandas as pd
+
+load_dotenv()
 
 
 def load_sales_from_mongodb():
@@ -9,14 +13,20 @@ def load_sales_from_mongodb():
     seller, product, daily_sales, date
     """
 
-    client = MongoClient("mongodb://localhost:27017/")
+    client = MongoClient(os.getenv("MONGO_URI"))
     db = client["smart_inventory"]
     sales_collection = db["sales"]
 
     sales_data = list(
         sales_collection.find(
             {},
-            {"_id": 0, "product": 1, "quantity": 1, "createdAt": 1, "seller": 1}
+            {
+                "_id": 0,
+                "product": 1,
+                "quantity": 1,
+                "createdAt": 1,
+                "seller": 1
+            }
         )
     )
 
@@ -26,13 +36,13 @@ def load_sales_from_mongodb():
 
     df = pd.DataFrame(sales_data)
 
-    # Rename columns
-    df = df.rename(columns={
-        "createdAt": "date",
-        "quantity": "daily_sales"
-    })
+    df = df.rename(
+        columns={
+            "createdAt": "date",
+            "quantity": "daily_sales"
+        }
+    )
 
-    # Convert types
     df["date"] = pd.to_datetime(df["date"])
     df["product"] = df["product"].astype(str)
     df["seller"] = df["seller"].astype(str)
@@ -48,7 +58,6 @@ def aggregate_daily_sales(df):
     if df.empty:
         return pd.DataFrame()
 
-    # Normalize date to remove time
     df["date"] = df["date"].dt.date
 
     daily_df = (
