@@ -22,13 +22,13 @@ exports.runPrediction = async (req, res) => {
         return res.json(response.data);
 
     } catch (error) {
-        console.error(
-            "ML Service Error:",
-            error.response?.data || error.message
-        );
+    console.error(
+        "ML Service Error:",
+        error.response?.data || error.message
+    );
 
-        return res.status(500).json({
-            error: "Failed to get prediction from ML service"
-        });
-    }
+    return res.status(500).json({
+        error: error.response?.data || error.message
+    });
+}
 };
