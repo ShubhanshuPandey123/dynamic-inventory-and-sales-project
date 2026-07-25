@@ -27,7 +27,8 @@ exports.runPrediction = async (req, res) => {
         timeout: 120000
     }
         );
-
+            console.log("ML service responded:", response.status);
+   
         return res.json(response.data);
 
     } catch (error) {
