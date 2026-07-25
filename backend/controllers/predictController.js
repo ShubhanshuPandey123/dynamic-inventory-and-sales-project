@@ -16,7 +16,10 @@ exports.runPrediction = async (req, res) => {
                 seller_id,
                 product_id,
                 days
-            }
+            },
+            {
+        timeout: 120000
+    }
         );
 
         return res.json(response.data);

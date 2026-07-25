@@ -92,7 +92,7 @@ async function predict(days) {
 
         if (!res.ok) {
             const errorData = await res.json();
-            throw new Error(errorData.message || "Prediction failed");
+           throw new Error(errorData.error || errorData.message || "Prediction failed");
         }
 
         const data = await res.json();
