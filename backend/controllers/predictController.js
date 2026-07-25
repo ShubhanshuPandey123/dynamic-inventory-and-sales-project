@@ -10,6 +10,12 @@ exports.runPrediction = async (req, res) => {
     }
 
     try {
+           console.log("ML URL:", process.env.ML_SERVICE_URL);
+    console.log(
+        "Calling ML:",
+        `${process.env.ML_SERVICE_URL}/predict`
+    );
+
         const response = await axios.post(
             `${process.env.ML_SERVICE_URL}/predict`,
             {
