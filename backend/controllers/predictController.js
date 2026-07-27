@@ -10,11 +10,16 @@ exports.runPrediction = async (req, res) => {
     }
 
     try {
-           console.log("ML URL:", process.env.ML_SERVICE_URL);
-    console.log(
-        "Calling ML:",
-        `${process.env.ML_SERVICE_URL}/predict`
-    );
+        console.log("Waking up ML service...");
+
+        await axios.get(
+            `${process.env.ML_SERVICE_URL}/`,
+            {
+                timeout: 180000
+            }
+        );
+
+        console.log("ML service is awake");
 
         const response = await axios.post(
             `${process.env.ML_SERVICE_URL}/predict`,
@@ -24,21 +29,22 @@ exports.runPrediction = async (req, res) => {
                 days
             },
             {
-        timeout: 120000
-    }
+                timeout: 180000
+            }
         );
-            console.log("ML service responded:", response.status);
-   
+
+        console.log("Prediction received from ML service");
+
         return res.json(response.data);
 
     } catch (error) {
-    console.error(
-        "ML Service Error:",
-        error.response?.data || error.message
-    );
+        console.error(
+            "ML Service Error:",
+            error.response?.data || error.message
+        );
 
-    return res.status(500).json({
-        error: error.response?.data || error.message
-    });
-}
+        return res.status(500).json({
+            error: error.response?.data || error.message
+        });
+    }
 };
