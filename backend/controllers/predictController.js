@@ -10,16 +10,16 @@ exports.runPrediction = async (req, res) => {
     }
 
     try {
-        console.log("Waking up ML service...");
+        // console.log("Waking up ML service...");
 
-        await axios.get(
-            `${process.env.ML_SERVICE_URL}/`,
-            {
-                timeout: 180000
-            }
-        );
+        // await axios.get(
+        //     `${process.env.ML_SERVICE_URL}/`,
+        //     {
+        //         timeout: 180000
+        //     }
+        // );
 
-        console.log("ML service is awake");
+        // console.log("ML service is awake");
 
         const response = await axios.post(
             `${process.env.ML_SERVICE_URL}/predict`,
