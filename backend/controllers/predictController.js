@@ -37,11 +37,22 @@ exports.runPrediction = async (req, res) => {
 
         return res.json(response.data);
 
-    } catch (error) {
-        console.error(
-            "ML Service Error:",
-            error.response?.data || error.message
-        );
+ }
+    //  catch (error) {
+    //     console.error(
+    //         "ML Service Error:",
+    //         error.response?.data || error.message
+    //     );
+    catch (error) {
+    console.log("STATUS:", error.response?.status);
+    console.log("DATA:", error.response?.data);
+    console.log("URL:", error.config?.url);
+    console.log("MESSAGE:", error.message);
+
+    return res.status(500).json({
+        error: error.response?.data || error.message
+    });
+}
 
         return res.status(500).json({
             error: error.response?.data || error.message
