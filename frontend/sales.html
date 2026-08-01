@@ -1,14 +1,23 @@
 
 <!DOCTYPE html>
+
 <html>
 
 <head>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>Sales & Prediction</title>
+    <title>
+        Sales & Prediction
+    </title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
 
 </head>
 
@@ -16,25 +25,33 @@
 
 <nav>
 
-    <a href="dashboard.html">Dashboard</a>
+    <a href="dashboard.html">
+        Dashboard
+    </a>
 
-    <a href="inventory.html">Inventory</a>
+    <a href="inventory.html">
+        Inventory
+    </a>
 
-    <a href="sales.html">Sales & Prediction</a>
+    <a href="sales.html">
+        Sales & Prediction
+    </a>
 
-    <a href="alerts.html">Alerts</a>
+    <a href="alerts.html">
+        Alerts
+    </a>
 
 </nav>
 
 
 <div class="container">
 
-    <h2>Sales & Prediction</h2>
+    <h2>
+        Sales & Prediction
+    </h2>
 
 
-    <!-- ========================= -->
     <!-- SALES -->
-    <!-- ========================= -->
 
     <div class="card">
 
@@ -52,43 +69,15 @@
     </div>
 
 
-    <!-- ========================= -->
-    <!-- ML SERVICE -->
-    <!-- ========================= -->
-
-    <div class="card">
-
-        <h3>ML Service</h3>
-
-        <p id="mlStatus">
-            ML Service is not started
-        </p>
-
-        <button
-            id="wakeMLBtn"
-            onclick="wakeMLService()"
-        >
-            Wake ML Service
-        </button>
-
-    </div>
-
-
-    <!-- ========================= -->
     <!-- PREDICTION -->
-    <!-- ========================= -->
 
     <div class="card">
 
-        <button
-            onclick="predict(7)"
-        >
+        <button onclick="predict(7)">
             Predict 7 Days
         </button>
 
-        <button
-            onclick="predict(30)"
-        >
+        <button onclick="predict(30)">
             Predict 30 Days
         </button>
 
@@ -97,13 +86,13 @@
     </div>
 
 
-    <!-- ========================= -->
     <!-- CHART -->
-    <!-- ========================= -->
 
     <div class="card">
 
-        <h3>Predicted Demand</h3>
+        <h3>
+            Predicted Demand
+        </h3>
 
         <canvas
             id="predictionChart"
@@ -116,19 +105,11 @@
 </div>
 
 
-<!-- Chart.js -->
-
 <script
     src="https://cdn.jsdelivr.net/npm/chart.js">
 </script>
 
-
-<!-- Config -->
-
 <script src="js/config.js"></script>
-
-
-<!-- Sales + Prediction -->
 
 <script src="js/sales.js"></script>
 
