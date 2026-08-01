@@ -1,5 +1,7 @@
 const axios = require("axios");
 
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 exports.runPrediction = async (req, res) => {
     const { seller_id, product_id, days } = req.body;
 
@@ -9,11 +11,48 @@ exports.runPrediction = async (req, res) => {
         });
     }
 
+    const ML_URL = process.env.ML_SERVICE_URL;
+
     try {
-        console.log("Calling ML URL:", process.env.ML_SERVICE_URL);
+        console.log("ML Service:", ML_URL);
+
+        // STEP 1: Wake up ML service
+        console.log("Waking ML service...");
+
+        let serviceReady = false;
+
+        for (let attempt = 1; attempt <= 18; attempt++) {
+            try {
+                console.log(`Wake-up attempt ${attempt}/18`);
+
+                await axios.get(ML_URL, {
+                    timeout: 15000
+                });
+
+                serviceReady = true;
+                console.log("ML service is awake!");
+                break;
+
+            } catch (error) {
+                console.log(
+                    `ML service not ready. Waiting 10 seconds...`
+                );
+
+                await sleep(10000);
+            }
+        }
+
+        if (!serviceReady) {
+            return res.status(503).json({
+                error: "ML service could not be started. Please try again."
+            });
+        }
+
+        // STEP 2: Now send prediction request
+        console.log("Sending prediction request...");
 
         const response = await axios.post(
-            `${process.env.ML_SERVICE_URL}/predict`,
+            `${ML_URL}/predict`,
             {
                 seller_id,
                 product_id,
