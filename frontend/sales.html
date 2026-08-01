@@ -1,42 +1,137 @@
+
 <!DOCTYPE html>
 <html>
+
 <head>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Sales & Prediction</title>
+
     <link rel="stylesheet" href="css/style.css">
+
 </head>
+
 <body>
 
 <nav>
+
     <a href="dashboard.html">Dashboard</a>
+
     <a href="inventory.html">Inventory</a>
+
     <a href="sales.html">Sales & Prediction</a>
+
     <a href="alerts.html">Alerts</a>
+
 </nav>
 
+
 <div class="container">
+
     <h2>Sales & Prediction</h2>
 
+
+    <!-- ========================= -->
+    <!-- SALES -->
+    <!-- ========================= -->
+
     <div class="card">
+
         <select id="productSelect"></select>
-        <input id="saleQty" placeholder="Quantity Sold">
-        <button onclick="addSale()">Add Sale</button>
+
+        <input
+            id="saleQty"
+            placeholder="Quantity Sold"
+        >
+
+        <button onclick="addSale()">
+            Add Sale
+        </button>
+
     </div>
 
+
+    <!-- ========================= -->
+    <!-- ML SERVICE -->
+    <!-- ========================= -->
+
     <div class="card">
-        <button onclick="predict(7)">Predict 7 Days</button>
-        <button onclick="predict(30)">Predict 30 Days</button>
+
+        <h3>ML Service</h3>
+
+        <p id="mlStatus">
+            ML Service is not started
+        </p>
+
+        <button
+            id="wakeMLBtn"
+            onclick="wakeMLService()"
+        >
+            Wake ML Service
+        </button>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- PREDICTION -->
+    <!-- ========================= -->
+
+    <div class="card">
+
+        <button
+            onclick="predict(7)"
+        >
+            Predict 7 Days
+        </button>
+
+        <button
+            onclick="predict(30)"
+        >
+            Predict 30 Days
+        </button>
+
         <div id="predictionResult"></div>
+
     </div>
+
+
+    <!-- ========================= -->
+    <!-- CHART -->
+    <!-- ========================= -->
+
     <div class="card">
-    <h3>Predicted Demand</h3>
-    <canvas id="predictionChart" width="400" height="200"></canvas>
-</div>
+
+        <h3>Predicted Demand</h3>
+
+        <canvas
+            id="predictionChart"
+            width="400"
+            height="200"
+        ></canvas>
+
+    </div>
 
 </div>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<!-- Chart.js -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/chart.js">
+</script>
+
+
+<!-- Config -->
 
 <script src="js/config.js"></script>
+
+
+<!-- Sales + Prediction -->
+
 <script src="js/sales.js"></script>
+
 </body>
+
 </html>
