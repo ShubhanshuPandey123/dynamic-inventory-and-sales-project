@@ -3,6 +3,9 @@ const axios = require("axios");
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 exports.runPrediction = async (req, res) => {
+
+    console.log("🔥 runPrediction CALLED", new Date().toISOString());
+
     const { seller_id, product_id, days } = req.body;
 
     if (!seller_id || !product_id || !days) {
